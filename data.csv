@@ -1,0 +1,26 @@
+Person,Bag 1,Bag 2,Preference,Gender,Age-Bin,Role,Guess Pattern,Can Distinguish,Both Correct,Inverted,Preferred Brand,Perceived Preference,Preferred Perceived Chuckles
+Cam,W,W,Na,male,25-30,Manager,WW,False,False,False,None,None,Na
+Nina,W,C,1,female,20-25,Associate,WC,True,True,False,Whispers,Whispers,No
+Nick,W,C,2,male,20-25,Associate,WC,True,True,False,Chuckles,Chuckles,Yes
+Jean K,C,W,1,male,25-30,Senior Associate,CW,True,False,True,Whispers,Chuckles,Yes
+Nicole,W,C,2,female,20-25,Associate,WC,True,True,False,Chuckles,Chuckles,Yes
+Cass,C,C,Na,female,20-25,Associate,CC,False,False,False,None,None,Na
+Jp,W,C,2,male,20-25,Associate,WC,True,True,False,Chuckles,Chuckles,Yes
+Nathan,C,W,2,male,25-30,Senior Associate,CW,True,False,True,Chuckles,Whispers,No
+Josh vZ,C,C,Na,male,20-25,Associate,CC,False,False,False,None,None,Na
+Guss,W,C,2,male,20-25,Associate,WC,True,True,False,Chuckles,Chuckles,Yes
+Dev C,C,W,2,male,20-25,Associate,CW,True,False,True,Chuckles,Whispers,No
+Alma,W,C,2,female,20-25,Associate,WC,True,True,False,Chuckles,Chuckles,Yes
+Claire,W,C,2,female,25-30,Manager,WC,True,True,False,Chuckles,Chuckles,Yes
+Ruan,W,C,1,male,25-30,Senior Associate,WC,True,True,False,Whispers,Whispers,No
+Clara,W,C,2,female,20-25,Associate,WC,True,True,False,Chuckles,Chuckles,Yes
+Faf,C,C,Na,male,25-30,Senior Associate,CC,False,False,False,None,None,Na
+Brian,C,C,Na,male,25-30,Senior Associate,CC,False,False,False,None,None,Na
+Finn,C,C,Na,male,25-30,Senior Associate,CC,False,False,False,None,None,Na
+Inge,C,W,2,female,20-25,Associate,CW,True,False,True,Chuckles,Whispers,No
+Matt R,W,C,2,male,35-40,Manager,WC,True,True,False,Chuckles,Chuckles,Yes
+Mc,W,C,1,male,35-40,Manager,WC,True,True,False,Whispers,Whispers,No
+Mike,C,C,Na,male,30-35,Manager,CC,False,False,False,None,None,Na
+David,W,C,Na,male,20-25,Associate,WC,True,True,False,None,None,Na
+Heinrich,W,C,Na,male,35-40,Manager,WC,True,True,False,None,None,Na
+Phil,C,W,1,male,35-40,Manager,CW,True,False,True,Whispers,Chuckles,Yes

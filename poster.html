@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chuckles vs. Whispers: Research Poster</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+
+    html, body {
+      background: #ffffff;
+      color: #000000;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 9.6px;
+      line-height: 1.44;
+      font-weight: 400;
+      letter-spacing: -0.01em;
+      -webkit-font-smoothing: antialiased;
+      margin: 0;
+      padding: 0;
+    }
+
+    .poster {
+      width: 210mm;
+      max-width: 210mm;
+      height: 297mm;
+      max-height: 297mm;
+      box-sizing: border-box;
+      padding: 9.5mm 13mm 8mm 13mm;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* --------------------------------------------------
+       HEADER: LEFT-ALIGNED TEXT + HERO IMAGE TO THE RIGHT
+    -------------------------------------------------- */
+    .poster-header {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 20px;
+      align-items: center;
+      border-bottom: 1.5px solid #000000;
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+
+    .poster-header-text {
+      text-align: left;
+    }
+
+    .poster-title {
+      font-size: 3.7em;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.02;
+      margin-bottom: 6px;
+      color: #000000;
+    }
+
+    .poster-subline {
+      font-size: 1.18em;
+      font-weight: 500;
+      color: #111111;
+      margin-bottom: 6px;
+    }
+
+    .poster-desc {
+      font-size: 0.94em;
+      color: #555555;
+      line-height: 1.48;
+      margin-bottom: 10px;
+    }
+
+    .poster-badges {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .poster-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #d1d5db;
+      border-radius: 9999px;
+      padding: 3px 11px;
+      font-size: 0.88em;
+      line-height: 1.2;
+      color: #444444;
+      background: #ffffff;
+      vertical-align: middle;
+    }
+
+    .poster-hero-wrap {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .poster-hero-img {
+      width: 225px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* --------------------------------------------------
+       2-COLUMN CONTENT AREA (MORE BREATHING ROOM)
+    -------------------------------------------------- */
+    .poster-body-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: 28px;
+      align-items: start;
+      flex: 1;
+    }
+
+    .poster-col-left {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .poster-col-right {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .insight-card {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .insight-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-start;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      color: #555555;
+      border-radius: 9999px;
+      padding: 2.5px 9px;
+      font-size: 0.8em;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 4px;
+      vertical-align: middle;
+    }
+
+    .insight-title {
+      font-size: 1.22em;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      line-height: 1.22;
+      margin-bottom: 3px;
+      color: #000000;
+    }
+
+    .insight-subline {
+      font-size: 0.96em;
+      font-weight: 500;
+      color: #111111;
+      margin-bottom: 4px;
+    }
+
+    .insight-body {
+      font-size: 0.88em;
+      color: #555555;
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+
+    .vis-wrap {
+      margin-top: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+    }
+
+    .vis-title {
+      font-size: 0.78em;
+      color: #888888;
+      margin-bottom: 4px;
+      text-align: center;
+    }
+
+    .legend-wrap {
+      margin-top: 5px;
+      font-size: 0.76em;
+      color: #666666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2px 8px;
+    }
+
+    .legend-item { display: inline-flex; align-items: center; gap: 4px; }
+
+    .legend-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+    }
+
+    /* Dot strips */
+    .dot-strip {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .dot-strip-sm {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    .strip-divider {
+      width: 1.5px;
+      height: 16px;
+      background: #cccccc;
+      margin: 0 3px;
+      flex-shrink: 0;
+    }
+
+    .strip-label {
+      font-size: 0.84em;
+      color: #666666;
+      margin-top: 4px;
+      text-align: center;
+    }
+
+    /* Waffle blocks */
+    .waffle-wrap {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    .waffle-label {
+      font-size: 0.84em;
+      color: #555555;
+      margin-top: 3px;
+      line-height: 1.25;
+      text-align: center;
+    }
+
+    .waffle-val {
+      font-size: 1.1em;
+      font-weight: 600;
+      color: #000000;
+    }
+
+    /* Default dots */
+    .default-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .default-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .default-dots { display: flex; gap: 3.5px; }
+
+    .default-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .default-label { font-size: 0.88em; color: #444444; }
+
+    /* --------------------------------------------------
+       FOOTER
+    -------------------------------------------------- */
+    .poster-footer {
+      border-top: 1.2px solid #000000;
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    .footer-label {
+      font-size: 0.78em;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #111111;
+      margin-bottom: 2px;
+    }
+
+    .footer-body {
+      font-size: 0.70em;
+      color: #666666;
+      line-height: 1.36;
+      margin-bottom: 2px;
+    }
+
+    .footer-body strong { color: #222222; font-weight: 500; }
+
+    .footer-copy {
+      font-size: 0.65em;
+      color: #aaaaaa;
+      margin-top: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="poster">
+
+  <!-- ======================================================
+       POSTER HEADER: TEXT ON LEFT, HERO IMAGE ON RIGHT
+  ====================================================== -->
+  <header class="poster-header">
+    <div class="poster-header-text">
+      <h1 class="poster-title">Chuckles vs. Whispers</h1>
+      <p class="poster-subline">A blind taste test study. 25 participants. One clear winner.</p>
+      <p class="poster-desc">
+        Two unlabelled bags were prepared: Bag 1 held Cadbury Whispers, Bag 2 held Woolworths Chuckles.
+        Participants identified contents and recorded a preference without seeing packaging.
+      </p>
+      <div class="poster-badges">
+        <span class="poster-badge">Oct 2026</span>
+        <span class="poster-badge">AIMS</span>
+        <span class="poster-badge">N = 25</span>
+        <span class="poster-badge">Double-Blind</span>
+      </div>
+    </div>
+    <div class="poster-hero-wrap">
+      <img src="assets/chuckles-and-whispers-transparent.png" alt="Chuckles and Whispers" class="poster-hero-img">
+    </div>
+  </header>
+
+  <!-- ======================================================
+       2-COLUMN CONTENT: LEFT (1, 2, 3), RIGHT (4, 5, 6)
+  ====================================================== -->
+  <div class="poster-body-grid">
+
+    <!-- LEFT COLUMN -->
+    <div class="poster-col poster-col-left">
+
+      <!-- INSIGHT 1 (WITH BOTH WAFFLE BLOCKS & SCATTER PLOT) -->
+      <div class="insight-card">
+        <div class="insight-num">Insight 1</div>
+        <h2 class="insight-title">People can taste the difference. They just can't name it.</h2>
+        <p class="insight-subline">Sensory contrast is real. Brand identification is not.</p>
+        <p class="insight-body">
+          72% perceived a difference (18 of 25). Only 52% correctly named both brands (13 of 25). An additional 20% felt the difference but had brands reversed. Identification at chance level (p = 0.043 vs. 50% baseline).
+        </p>
+        <div class="vis-wrap">
+          <!-- Waffle blocks side by side -->
+          <div class="waffle-wrap" style="margin-bottom: 18px;">
+            <div>
+              <svg viewBox="0 0 70 70" style="width:52px;height:52px;display:block;margin:0 auto;">
+                <circle cx="7" cy="7" r="5" fill="#000000"/>
+                <circle cx="21" cy="7" r="5" fill="#000000"/>
+                <circle cx="35" cy="7" r="5" fill="#000000"/>
+                <circle cx="49" cy="7" r="5" fill="#000000"/>
+                <circle cx="63" cy="7" r="5" fill="#000000"/>
+                <circle cx="7" cy="21" r="5" fill="#000000"/>
+                <circle cx="21" cy="21" r="5" fill="#000000"/>
+                <circle cx="35" cy="21" r="5" fill="#000000"/>
+                <circle cx="49" cy="21" r="5" fill="#000000"/>
+                <circle cx="63" cy="21" r="5" fill="#000000"/>
+                <circle cx="7" cy="35" r="5" fill="#000000"/>
+                <circle cx="21" cy="35" r="5" fill="#000000"/>
+                <circle cx="35" cy="35" r="5" fill="#000000"/>
+                <circle cx="49" cy="35" r="5" fill="#000000"/>
+                <circle cx="63" cy="35" r="5" fill="#000000"/>
+                <circle cx="7" cy="49" r="5" fill="#000000"/>
+                <circle cx="21" cy="49" r="5" fill="#000000"/>
+                <circle cx="35" cy="49" r="5" fill="#000000"/>
+                <circle cx="49" cy="49" r="5" fill="#e5e7eb"/>
+                <circle cx="63" cy="49" r="5" fill="#e5e7eb"/>
+                <circle cx="7" cy="63" r="5" fill="#e5e7eb"/>
+                <circle cx="21" cy="63" r="5" fill="#e5e7eb"/>
+                <circle cx="35" cy="63" r="5" fill="#e5e7eb"/>
+                <circle cx="49" cy="63" r="5" fill="#e5e7eb"/>
+                <circle cx="63" cy="63" r="5" fill="#e5e7eb"/>
+              </svg>
+              <div class="waffle-label"><span class="waffle-val">72%</span> contrast</div>
+            </div>
+            <div>
+              <svg viewBox="0 0 70 70" style="width:52px;height:52px;display:block;margin:0 auto;">
+                <circle cx="7" cy="7" r="5" fill="#000000"/>
+                <circle cx="21" cy="7" r="5" fill="#000000"/>
+                <circle cx="35" cy="7" r="5" fill="#000000"/>
+                <circle cx="49" cy="7" r="5" fill="#000000"/>
+                <circle cx="63" cy="7" r="5" fill="#000000"/>
+                <circle cx="7" cy="21" r="5" fill="#000000"/>
+                <circle cx="21" cy="21" r="5" fill="#000000"/>
+                <circle cx="35" cy="21" r="5" fill="#000000"/>
+                <circle cx="49" cy="21" r="5" fill="#000000"/>
+                <circle cx="63" cy="21" r="5" fill="#000000"/>
+                <circle cx="7" cy="35" r="5" fill="#000000"/>
+                <circle cx="21" cy="35" r="5" fill="#000000"/>
+                <circle cx="35" cy="35" r="5" fill="#000000"/>
+                <circle cx="49" cy="35" r="5" fill="#e5e7eb"/>
+                <circle cx="63" cy="35" r="5" fill="#e5e7eb"/>
+                <circle cx="7" cy="49" r="5" fill="#e5e7eb"/>
+                <circle cx="21" cy="49" r="5" fill="#e5e7eb"/>
+                <circle cx="35" cy="49" r="5" fill="#e5e7eb"/>
+                <circle cx="49" cy="49" r="5" fill="#e5e7eb"/>
+                <circle cx="63" cy="49" r="5" fill="#e5e7eb"/>
+                <circle cx="7" cy="63" r="5" fill="#e5e7eb"/>
+                <circle cx="21" cy="63" r="5" fill="#e5e7eb"/>
+                <circle cx="35" cy="63" r="5" fill="#e5e7eb"/>
+                <circle cx="49" cy="63" r="5" fill="#e5e7eb"/>
+                <circle cx="63" cy="63" r="5" fill="#e5e7eb"/>
+              </svg>
+              <div class="waffle-label"><span class="waffle-val">52%</span> named both</div>
+            </div>
+          </div>
+
+          <!-- Quadrant Scatter Plot SVG -->
+          <svg viewBox="0 0 250 135" style="width:235px;max-width:100%;height:auto;display:block;margin:0 auto;">
+            <!-- Axis lines -->
+            <line x1="62" y1="64" x2="242" y2="64" stroke="#e5e7eb" stroke-width="1.2"/>
+            <line x1="152" y1="12" x2="152" y2="116" stroke="#e5e7eb" stroke-width="1.2"/>
+
+            <!-- Row labels (Y) -->
+            <text x="56" y="41" font-size="7" fill="#888" font-family="Inter,sans-serif" text-anchor="end">Bag 2: Chuckles</text>
+            <text x="56" y="93" font-size="7" fill="#888" font-family="Inter,sans-serif" text-anchor="end">Bag 2: Whispers</text>
+
+            <!-- Col labels (X) -->
+            <text x="107" y="127" font-size="7" fill="#888" font-family="Inter,sans-serif" text-anchor="middle">Bag 1: Whispers</text>
+            <text x="197" y="127" font-size="7" fill="#888" font-family="Inter,sans-serif" text-anchor="middle">Bag 1: Chuckles</text>
+
+            <!-- Quadrant Labels -->
+            <text x="68" y="21" font-size="7" font-weight="600" fill="#000" font-family="Inter,sans-serif">Both Correct (W, C)</text>
+            <text x="68" y="28" font-size="6" fill="#888" font-family="Inter,sans-serif">13 (52%)</text>
+
+            <text x="158" y="21" font-size="7" font-weight="600" fill="#000" font-family="Inter,sans-serif">Identical Chuckles (C, C)</text>
+            <text x="158" y="28" font-size="6" fill="#888" font-family="Inter,sans-serif">6 (24%)</text>
+
+            <text x="68" y="74" font-size="7" font-weight="600" fill="#000" font-family="Inter,sans-serif">Identical Whispers (W, W)</text>
+            <text x="68" y="81" font-size="6" fill="#888" font-family="Inter,sans-serif">1 (4%)</text>
+
+            <text x="158" y="74" font-size="7" font-weight="600" fill="#000" font-family="Inter,sans-serif">Inverted (C, W)</text>
+            <text x="158" y="81" font-size="6" fill="#888" font-family="Inter,sans-serif">5 (20%)</text>
+
+            <!-- Top-Left Dots: WC (13 dots: 9 red, 2 purple, 2 grey) -->
+            <circle cx="72" cy="38" r="3.2" fill="#d32f2f"/>
+            <circle cx="82" cy="38" r="3.2" fill="#d32f2f"/>
+            <circle cx="92" cy="38" r="3.2" fill="#d32f2f"/>
+            <circle cx="102" cy="38" r="3.2" fill="#d32f2f"/>
+            <circle cx="112" cy="38" r="3.2" fill="#d32f2f"/>
+            <circle cx="72" cy="47" r="3.2" fill="#d32f2f"/>
+            <circle cx="82" cy="47" r="3.2" fill="#d32f2f"/>
+            <circle cx="92" cy="47" r="3.2" fill="#d32f2f"/>
+            <circle cx="102" cy="47" r="3.2" fill="#d32f2f"/>
+            <circle cx="112" cy="47" r="3.2" fill="#5e35b1"/>
+            <circle cx="72" cy="56" r="3.2" fill="#5e35b1"/>
+            <circle cx="82" cy="56" r="3.2" fill="#888888"/>
+            <circle cx="92" cy="56" r="3.2" fill="#888888"/>
+
+            <!-- Top-Right Dots: CC (6 dots: all grey) -->
+            <circle cx="162" cy="38" r="3.2" fill="#888888"/>
+            <circle cx="172" cy="38" r="3.2" fill="#888888"/>
+            <circle cx="182" cy="38" r="3.2" fill="#888888"/>
+            <circle cx="162" cy="47" r="3.2" fill="#888888"/>
+            <circle cx="172" cy="47" r="3.2" fill="#888888"/>
+            <circle cx="182" cy="47" r="3.2" fill="#888888"/>
+
+            <!-- Bottom-Left Dots: WW (1 dot: grey) -->
+            <circle cx="72" cy="91" r="3.2" fill="#888888"/>
+
+            <!-- Bottom-Right Dots: CW (5 dots: 3 red, 2 purple) -->
+            <circle cx="162" cy="91" r="3.2" fill="#d32f2f"/>
+            <circle cx="172" cy="91" r="3.2" fill="#d32f2f"/>
+            <circle cx="182" cy="91" r="3.2" fill="#d32f2f"/>
+            <circle cx="162" cy="100" r="3.2" fill="#5e35b1"/>
+            <circle cx="172" cy="100" r="3.2" fill="#5e35b1"/>
+          </svg>
+          <div class="legend-wrap" style="margin-top:2px;">
+            <span class="legend-item"><span class="legend-dot" style="background:#d32f2f"></span>Chuckles</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#5e35b1"></span>Whispers</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#888888"></span>Neutral</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSIGHT 2 -->
+      <div class="insight-card">
+        <div class="insight-num">Insight 2</div>
+        <h2 class="insight-title">Those who can tell, overwhelmingly choose Chuckles.</h2>
+        <p class="insight-subline">Connoisseur conviction: 9 to 2 in favour of Chuckles.</p>
+        <p class="insight-body">
+          Among 13 correct identifiers, 11 had a preference. Of those, 9 chose Chuckles (81.8%) and 2 chose Whispers. A 4:1 margin, statistically significant (p = 0.033).
+        </p>
+        <div class="vis-wrap">
+          <p class="vis-title">Preferences of correct identifiers (n = 11 with preference)</p>
+          <div class="dot-strip">
+            <span class="dot-strip-sm" style="background:#d32f2f"></span>
+            <span class="dot-strip-sm" style="background:#d32f2f"></span>
+            <span class="dot-strip-sm" style="background:#d32f2f"></span>
+            <span class="dot-strip-sm" style="background:#d32f2f"></span>
+            <span class="dot-strip-sm" style="background:#d32f2f"></span>
+            <span class="dot-strip-sm" style="background:#d32f2f"></span>
+            <span class="dot-strip-sm" style="background:#d32f2f"></span>
+            <span class="dot-strip-sm" style="background:#d32f2f"></span>
+            <span class="dot-strip-sm" style="background:#d32f2f"></span>
+            <span class="strip-divider"></span>
+            <span class="dot-strip-sm" style="background:#5e35b1"></span>
+            <span class="dot-strip-sm" style="background:#5e35b1"></span>
+          </div>
+          <p class="strip-label">9 Chuckles &nbsp;|&nbsp; 2 Whispers &nbsp;&bull;&nbsp; 4:1 ratio</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN (INSIGHTS 3, 4, 5, 6) -->
+    <div class="poster-col poster-col-right">
+
+      <!-- INSIGHT 3 -->
+      <div class="insight-card">
+        <div class="insight-num">Insight 3</div>
+        <h2 class="insight-title">People prefer whichever bag they believe is Chuckles.</h2>
+        <p class="insight-subline">Brand expectation shapes taste perception.</p>
+        <p class="insight-body">
+          Of 16 participants with a preference, 62.5% (10 of 16) chose the bag they believed was Chuckles, regardless of whether they were right. Belief overrides the palate.
+        </p>
+        <div class="vis-wrap">
+          <p class="vis-title">Believed choice (left) vs. actual brand preference (right)</p>
+          <svg viewBox="0 0 260 76" style="width:235px;max-width:100%;height:auto;display:block;margin:0 auto;">
+            <!-- Left nodes -->
+            <text x="80" y="17" font-size="7.2" text-anchor="end" font-family="Inter,sans-serif" fill="#555">Thought Chuckles (10)</text>
+            <circle cx="85" cy="14" r="3.2" fill="#000000"/>
+            <text x="80" y="41" font-size="7.2" text-anchor="end" font-family="Inter,sans-serif" fill="#555">Thought Whispers (6)</text>
+            <circle cx="85" cy="38" r="3.2" fill="#000000"/>
+            <text x="80" y="65" font-size="7.2" text-anchor="end" font-family="Inter,sans-serif" fill="#555">No Preference (9)</text>
+            <circle cx="85" cy="62" r="3.2" fill="#000000"/>
+
+            <!-- Right nodes -->
+            <text x="175" y="17" font-size="7.2" text-anchor="start" font-family="Inter,sans-serif" fill="#555">Actual Chuckles (11)</text>
+            <circle cx="170" cy="14" r="3.2" fill="#000000"/>
+            <text x="175" y="41" font-size="7.2" text-anchor="start" font-family="Inter,sans-serif" fill="#555">Actual Whispers (5)</text>
+            <circle cx="170" cy="38" r="3.2" fill="#000000"/>
+            <text x="175" y="65" font-size="7.2" text-anchor="start" font-family="Inter,sans-serif" fill="#555">No Preference (9)</text>
+            <circle cx="170" cy="62" r="3.2" fill="#000000"/>
+
+            <!-- Flows: Thought Chuckles -> Actual Chuckles -->
+            <path d="M 85 13 C 115 13, 140 13, 170 13" fill="none" stroke="#d32f2f" stroke-width="2.5" opacity="0.75"/>
+            <path d="M 85 16 C 115 16, 140 37, 170 37" fill="none" stroke="#5e35b1" stroke-width="1.2" opacity="0.6" stroke-dasharray="3 2"/>
+
+            <!-- Thought Whispers -> Actual Chuckles -->
+            <path d="M 85 37 C 115 37, 140 16, 170 16" fill="none" stroke="#d32f2f" stroke-width="1.2" opacity="0.6" stroke-dasharray="3 2"/>
+            <path d="M 85 39 C 115 39, 140 39, 170 39" fill="none" stroke="#5e35b1" stroke-width="1.8" opacity="0.75"/>
+
+            <!-- No preference -->
+            <path d="M 85 62 C 115 62, 140 62, 170 62" fill="none" stroke="#888888" stroke-width="2.5" opacity="0.2"/>
+          </svg>
+          <div class="legend-wrap">
+            <span class="legend-item"><span class="legend-dot" style="background:#d32f2f"></span>Chuckles</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#5e35b1"></span>Whispers</span>
+            <span class="legend-item" style="color:#777">- - Contradiction</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSIGHT 4 -->
+      <div class="insight-card">
+        <div class="insight-num">Insight 4</div>
+        <h2 class="insight-title">A 9% premium yields twice the preference share.</h2>
+        <p class="insight-subline">The Woolworths premium is taste-validated.</p>
+        <p class="insight-body">
+          Chuckles: R0.47/g vs. Whispers: R0.43/g (+9.3%). In blind testing, Chuckles captured 68.8% of expressed preferences (11 vs. 5). A 120% preference advantage from a modest price difference.
+        </p>
+        <div class="vis-wrap">
+          <p class="vis-title">Price vs. preference disproportionality</p>
+          <svg viewBox="0 0 240 52" style="width:235px;max-width:100%;height:auto;display:block;margin:0 auto;">
+            <!-- Price row -->
+            <text x="0" y="9" font-size="7.2" fill="#888" font-family="Inter,sans-serif">Price per gram</text>
+            <line x1="0" y1="18" x2="210" y2="18" stroke="#f0f0f0" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="35" cy="18" r="4.2" fill="#5e35b1"/>
+            <text x="35" y="28" font-size="7" fill="#5e35b1" text-anchor="middle" font-family="Inter,sans-serif" font-weight="500">Whispers R0.43</text>
+            <circle cx="95" cy="18" r="4.2" fill="#d32f2f"/>
+            <text x="95" y="28" font-size="7" fill="#d32f2f" text-anchor="middle" font-family="Inter,sans-serif" font-weight="500">Chuckles R0.47</text>
+            <text x="145" y="20" font-size="7.5" fill="#777" font-family="Inter,sans-serif">+9.3% price</text>
+
+            <!-- Preference row -->
+            <text x="0" y="38" font-size="7.2" fill="#888" font-family="Inter,sans-serif">Blind preference</text>
+            <line x1="0" y1="45" x2="210" y2="45" stroke="#f0f0f0" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="35" cy="45" r="4.2" fill="#5e35b1"/>
+            <text x="35" y="53" font-size="7" fill="#5e35b1" text-anchor="middle" font-family="Inter,sans-serif" font-weight="500">31%</text>
+            <circle cx="120" cy="45" r="5.5" fill="#d32f2f"/>
+            <text x="120" y="53" font-size="7" fill="#d32f2f" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">69%</text>
+            <text x="145" y="47" font-size="7.8" fill="#d32f2f" font-weight="600" font-family="Inter,sans-serif">+120% pref share</text>
+          </svg>
+        </div>
+      </div>
+
+      <!-- INSIGHT 5 -->
+      <div class="insight-card">
+        <div class="insight-num">Insight 5</div>
+        <h2 class="insight-title">When uncertain, people assume Chuckles.</h2>
+        <p class="insight-subline">Chuckles is the mental default brand.</p>
+        <p class="insight-body">
+          Of 7 participants who perceived both bags as identical, 6 guessed Chuckles both times (85.7%) and only 1 guessed Whispers. All 7 reported no preference, confirming honest responses.
+        </p>
+        <div class="vis-wrap">
+          <p class="vis-title">Default brand assumption among identical guessers (n = 7)</p>
+          <div style="width:235px; max-width:100%; margin:0 auto 3px auto;">
+            <div style="display:flex; justify-content:space-between; font-size:0.75em; font-weight:600; margin-bottom:2px;">
+              <span style="color:#000000;">Chuckles default &bull; 85.7% (6)</span>
+              <span style="color:#666666;">Whispers &bull; 14.3% (1)</span>
+            </div>
+            <div style="display:flex; height:18px; border-radius:3px; overflow:hidden; font-size:0.74em; font-weight:600;">
+              <div style="width:85.7%; background:#000000; color:#ffffff; display:flex; align-items:center; justify-content:center;">85.7% (6)</div>
+              <div style="width:14.3%; background:#d1d5db; color:#111827; display:flex; align-items:center; justify-content:center; font-size:0.68em;">14%</div>
+            </div>
+          </div>
+          <div class="legend-wrap" style="margin-top:2px;">
+            <span class="legend-item"><span class="legend-dot" style="background:#000000; border-radius:2px;"></span>Defaulted to Chuckles (6)</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#d1d5db; border-radius:2px;"></span>Defaulted to Whispers (1)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- INSIGHT 6 -->
+      <div class="insight-card">
+        <div class="insight-num">Insight 6</div>
+        <h2 class="insight-title">Women identified correctly more often than men.</h2>
+        <p class="insight-subline">Gender is the clearest demographic signal.</p>
+        <p class="insight-body">
+          Women: 71.4% correct (5 of 7). Men: 44.4% correct (8 of 18). Notable difference across a small sample.
+        </p>
+        <div class="vis-wrap">
+          <p class="vis-title">Identification outcome by gender (100% composite bars)</p>
+          
+          <div style="width:235px; max-width:100%; margin:0 auto;">
+            <!-- Women Bar -->
+            <div style="margin-bottom: 5px;">
+              <div style="display:flex; justify-content:space-between; font-size:0.8em; margin-bottom:2px;">
+                <span style="font-weight:600; color:#000000;">Women (n = 7)</span>
+                <span style="color:#555555;"><strong>71.4%</strong> correct</span>
+              </div>
+              <div style="display:flex; height:17px; border-radius:3px; overflow:hidden; font-size:0.74em; font-weight:500;">
+                <div style="width:71.4%; background:#000000; color:#ffffff; display:flex; align-items:center; justify-content:center;">71.4% (5)</div>
+                <div style="width:14.3%; background:#767676; color:#ffffff; display:flex; align-items:center; justify-content:center;">14%</div>
+                <div style="width:14.3%; background:#d1d5db; color:#222222; display:flex; align-items:center; justify-content:center;">14%</div>
+              </div>
+            </div>
+
+            <!-- Men Bar -->
+            <div>
+              <div style="display:flex; justify-content:space-between; font-size:0.8em; margin-bottom:2px;">
+                <span style="font-weight:600; color:#000000;">Men (n = 18)</span>
+                <span style="color:#555555;"><strong>44.4%</strong> correct</span>
+              </div>
+              <div style="display:flex; height:17px; border-radius:3px; overflow:hidden; font-size:0.74em; font-weight:500;">
+                <div style="width:44.4%; background:#000000; color:#ffffff; display:flex; align-items:center; justify-content:center;">44.4% (8)</div>
+                <div style="width:33.3%; background:#767676; color:#ffffff; display:flex; align-items:center; justify-content:center;">33.3% (6)</div>
+                <div style="width:22.3%; background:#d1d5db; color:#222222; display:flex; align-items:center; justify-content:center;">22.2% (4)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="legend-wrap" style="margin-top:4px;">
+            <span class="legend-item"><span class="legend-dot" style="background:#000000; border-radius:2px;"></span>Correct</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#767676; border-radius:2px;"></span>Same</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#d1d5db; border-radius:2px;"></span>Inverted</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ======================================================
+       FOOTER
+  ====================================================== -->
+  <footer class="poster-footer">
+    <div class="footer-label">Methodology and Statistical Notes</div>
+    <p class="footer-body">
+      <strong>Study Design:</strong> Double-blind paired comparison (N = 25). Bag 1: Cadbury Whispers. Bag 2: Woolworths Chuckles. Four-way classification matrix (WW, WC, CW, CC).
+    </p>
+    <p class="footer-body">
+      <strong>Statistical Inference:</strong> Exact combinatorial distributions throughout. Sensory discernment via Abbott's chance-correction (P<sub>0</sub> = 0.50; two-tailed p = 0.0433). Preference split among accurate tasters: one-tailed exact binomial (p = 0.0327; 95% CI: 48.2% to 97.7%). Price estimates indicative at time of study. Convenience sample from single organisation.
+    </p>
+    <p class="footer-copy">&copy; 2026 Chuckles vs. Whispers Sensory Study &bull; AIMS &bull; Blind Panel Research</p>
+  </footer>
+
+</div>
+</body>
+</html>

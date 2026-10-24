@@ -326,10 +326,47 @@
       flex-wrap: nowrap;
     }
 
+    .opt-short {
+      display: none;
+    }
+    .opt-full {
+      display: inline;
+    }
+
     @media (max-width: 620px) {
+      .opt-full {
+        display: none !important;
+      }
+      .opt-short {
+        display: inline !important;
+      }
+      .slider-label {
+        display: none !important;
+      }
       .scatter-controls {
-        flex-wrap: wrap;
-        gap: 12px;
+        flex-wrap: nowrap;
+        gap: 8px;
+        justify-content: center;
+        width: 100%;
+      }
+      .scatter-controls .pill-slider {
+        padding: 2px;
+        gap: 1px;
+      }
+      .scatter-controls .pill-btn {
+        padding: 3px 8px;
+        font-size: 0.78em;
+      }
+      .waffle-row {
+        gap: 1.5rem;
+        margin-bottom: 2.25rem;
+      }
+      .waffle-item {
+        gap: 0.85rem;
+      }
+      .waffle-svg {
+        width: 58px;
+        height: 58px;
       }
     }
 
@@ -346,15 +383,15 @@
     .dot-strip {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 6px;
+      flex-wrap: nowrap;
       justify-content: center;
       margin-bottom: 0.75rem;
     }
 
     .dot-lg {
-      width: 22px;
-      height: 22px;
+      width: 18px;
+      height: 18px;
       border-radius: 50%;
       display: inline-block;
       flex-shrink: 0;
@@ -362,15 +399,29 @@
 
     .strip-divider {
       width: 2px;
-      height: 24px;
+      height: 20px;
       background: #d1d5db;
-      margin: 0 4px;
+      margin: 0 3px;
       flex-shrink: 0;
     }
 
     .strip-label {
       font-size: 0.88em;
       color: #666666;
+    }
+
+    @media (max-width: 480px) {
+      .dot-strip {
+        gap: 4px;
+      }
+      .dot-lg {
+        width: 14px;
+        height: 14px;
+      }
+      .strip-divider {
+        height: 16px;
+        margin: 0 2px;
+      }
     }
 
     /* -------------------------------------------------------
@@ -473,39 +524,63 @@
       font-size: 0.95em;
     }
 
-    .comp-bar-track {
+    .indiv-bar-list {
       display: flex;
-      height: 34px;
-      border-radius: 6px;
-      overflow: hidden;
-      background: #e5e7eb;
+      flex-direction: column;
+      gap: 7px;
       width: 100%;
     }
 
-    .comp-segment {
+    .indiv-bar-row {
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 0.82em;
-      font-weight: 500;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .indiv-bar-track {
+      flex: 1;
+      max-width: 280px;
+      height: 20px;
+      background: #f3f4f6;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .indiv-bar {
+      height: 100%;
+      border-radius: 4px;
+      transition: width 0.3s ease;
+    }
+
+    .indiv-bar-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 7px;
+      font-size: 0.85em;
       white-space: nowrap;
-      transition: width 0.25s ease;
-      user-select: none;
+    }
+
+    .indiv-bar-val {
+      font-weight: 600;
+      color: #111111;
+    }
+
+    .indiv-bar-name {
+      color: #666666;
+      font-size: 0.92em;
     }
 
     .comp-seg-correct {
       background: #000000;
-      color: #ffffff;
     }
 
     .comp-seg-same {
       background: #767676;
-      color: #ffffff;
     }
 
     .comp-seg-inverted {
       background: #d1d5db;
-      color: #222222;
     }
 
     .comp-seg-chuckles {
@@ -757,8 +832,8 @@
               <span class="slider-label">Preference:</span>
               <div class="pill-slider">
                 <button class="pill-btn active" onclick="setPrefPill('all',this)">All</button>
-                <button class="pill-btn" onclick="setPrefPill('Chuckles',this)">Chuckles</button>
-                <button class="pill-btn" onclick="setPrefPill('Whispers',this)">Whispers</button>
+                <button class="pill-btn" onclick="setPrefPill('Chuckles',this)"><span class="opt-full">Chuckles</span><span class="opt-short">C</span></button>
+                <button class="pill-btn" onclick="setPrefPill('Whispers',this)"><span class="opt-full">Whispers</span><span class="opt-short">W</span></button>
                 <button class="pill-btn" onclick="setPrefPill('None',this)">Neutral</button>
               </div>
             </div>
@@ -766,15 +841,15 @@
               <span class="slider-label">Gender:</span>
               <div class="pill-slider">
                 <button class="pill-btn active" onclick="setGenderPill('all',this)">All</button>
-                <button class="pill-btn" onclick="setGenderPill('female',this)">Women</button>
-                <button class="pill-btn" onclick="setGenderPill('male',this)">Men</button>
+                <button class="pill-btn" onclick="setGenderPill('female',this)"><span class="opt-full">Women</span><span class="opt-short">W</span></button>
+                <button class="pill-btn" onclick="setGenderPill('male',this)"><span class="opt-full">Men</span><span class="opt-short">M</span></button>
               </div>
             </div>
           </div>
           <svg id="scatterSvg" viewBox="0 0 420 260" style="width:420px; max-width:100%; height:auto; display:block;"></svg>
           <div class="legend-wrap" style="margin-top: 10px;">
-            <span class="legend-item"><span class="legend-dot" style="background:#d32f2f"></span>Preferred Chuckles</span>
-            <span class="legend-item"><span class="legend-dot" style="background:#5e35b1"></span>Preferred Whispers</span>
+            <span class="legend-item"><span class="legend-dot" style="background:#d32f2f"></span><span class="opt-full">Preferred Chuckles</span><span class="opt-short">C</span></span>
+            <span class="legend-item"><span class="legend-dot" style="background:#5e35b1"></span><span class="opt-full">Preferred Whispers</span><span class="opt-short">W</span></span>
             <span class="legend-item"><span class="legend-dot" style="background:#888888"></span>Neutral</span>
           </div>
         </div>
@@ -840,8 +915,8 @@
               <span class="slider-label">Highlight:</span>
               <div class="pill-slider">
                 <button class="pill-btn active" onclick="setFlowPill('all',this)">All</button>
-                <button class="pill-btn" onclick="setFlowPill('crossed',this)">Contradictions</button>
-                <button class="pill-btn" onclick="setFlowPill('chuckles',this)">Wanted Chuckles</button>
+                <button class="pill-btn" onclick="setFlowPill('crossed',this)"><span class="opt-full">Contradictions</span><span class="opt-short">Crossed</span></button>
+                <button class="pill-btn" onclick="setFlowPill('chuckles',this)"><span class="opt-full">Wanted Chuckles</span><span class="opt-short">Chuckles</span></button>
               </div>
             </div>
           </div>
@@ -964,7 +1039,7 @@
         <h2 class="insight-title">Women identified correctly more often than men.</h2>
         <p class="insight-subline">Gender is the clearest demographic signal in the data.</p>
         <p class="insight-body">
-          Women correctly identified both bags at a rate of 71.4% (5 of 7), compared to 44.4% for men (8 of 18). The composite bar chart below compares the outcome distribution (correctly identifying both brands, identifying them as identical, or inverting the brands) between women and men.
+          Women correctly identified both bags at a rate of 71.4% (5 of 7), compared to 44.4% for men (8 of 18). The chart below compares the outcome distribution (correctly identifying both brands, identifying them as identical, or inverting the brands) between women and men.
         </p>
       </div>
 
@@ -974,8 +1049,8 @@
             <div class="slider-group">
               <span class="slider-label">View:</span>
               <div class="pill-slider">
-                <button class="pill-btn active" onclick="setCompView('outcome',this)">Identification Outcome</button>
-                <button class="pill-btn" onclick="setCompView('preference',this)">Brand Preference</button>
+                <button class="pill-btn active" onclick="setCompView('outcome',this)"><span class="opt-full">Identification Outcome</span><span class="opt-short">Outcome</span></button>
+                <button class="pill-btn" onclick="setCompView('preference',this)"><span class="opt-full">Brand Preference</span><span class="opt-short">Preference</span></button>
               </div>
             </div>
           </div>
@@ -1255,21 +1330,69 @@
               <span class="comp-title">Women (n = 7)</span>
               <span class="comp-stat"><strong>71.4%</strong> correct</span>
             </div>
-            <div class="comp-bar-track">
-              <div class="comp-segment comp-seg-correct" style="width: 71.43%;" title="Correct: 5 of 7 (71.4%)">71.4% (5)</div>
-              <div class="comp-segment comp-seg-same" style="width: 14.29%;" title="Same: 1 of 7 (14.3%)">14.3% (1)</div>
-              <div class="comp-segment comp-seg-inverted" style="width: 14.28%;" title="Inverted: 1 of 7 (14.3%)">14.3% (1)</div>
+            <div class="indiv-bar-list">
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-correct" style="width: 71.43%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">71.4% (5)</span>
+                  <span class="indiv-bar-name">Correct</span>
+                </div>
+              </div>
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-same" style="width: 14.29%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">14.3% (1)</span>
+                  <span class="indiv-bar-name">Same</span>
+                </div>
+              </div>
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-inverted" style="width: 14.28%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">14.3% (1)</span>
+                  <span class="indiv-bar-name">Inverted</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="comp-group" style="margin-top:1.5rem;">
+          <div class="comp-group" style="margin-top:1.75rem;">
             <div class="comp-header">
               <span class="comp-title">Men (n = 18)</span>
               <span class="comp-stat"><strong>44.4%</strong> correct</span>
             </div>
-            <div class="comp-bar-track">
-              <div class="comp-segment comp-seg-correct" style="width: 44.44%;" title="Correct: 8 of 18 (44.4%)">44.4% (8)</div>
-              <div class="comp-segment comp-seg-same" style="width: 33.33%;" title="Same: 6 of 18 (33.3%)">33.3% (6)</div>
-              <div class="comp-segment comp-seg-inverted" style="width: 22.23%;" title="Inverted: 4 of 18 (22.2%)">22.2% (4)</div>
+            <div class="indiv-bar-list">
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-correct" style="width: 44.44%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">44.4% (8)</span>
+                  <span class="indiv-bar-name">Correct</span>
+                </div>
+              </div>
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-same" style="width: 33.33%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">33.3% (6)</span>
+                  <span class="indiv-bar-name">Same</span>
+                </div>
+              </div>
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-inverted" style="width: 22.23%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">22.2% (4)</span>
+                  <span class="indiv-bar-name">Inverted</span>
+                </div>
+              </div>
             </div>
           </div>
         `;
@@ -1285,21 +1408,69 @@
               <span class="comp-title">Women (n = 7)</span>
               <span class="comp-stat"><strong>71.4%</strong> Chuckles</span>
             </div>
-            <div class="comp-bar-track">
-              <div class="comp-segment comp-seg-chuckles" style="width: 71.43%;" title="Chuckles: 5 of 7 (71.4%)">71.4% (5)</div>
-              <div class="comp-segment comp-seg-whispers" style="width: 14.29%;" title="Whispers: 1 of 7 (14.3%)">14.3% (1)</div>
-              <div class="comp-segment comp-seg-neutral" style="width: 14.28%;" title="Neutral: 1 of 7 (14.3%)">14.3% (1)</div>
+            <div class="indiv-bar-list">
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-chuckles" style="width: 71.43%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">71.4% (5)</span>
+                  <span class="indiv-bar-name">Chuckles</span>
+                </div>
+              </div>
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-whispers" style="width: 14.29%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">14.3% (1)</span>
+                  <span class="indiv-bar-name">Whispers</span>
+                </div>
+              </div>
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-neutral" style="width: 14.28%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">14.3% (1)</span>
+                  <span class="indiv-bar-name">Neutral</span>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="comp-group" style="margin-top:1.5rem;">
+          <div class="comp-group" style="margin-top:1.75rem;">
             <div class="comp-header">
               <span class="comp-title">Men (n = 18)</span>
               <span class="comp-stat"><strong>33.3%</strong> Chuckles</span>
             </div>
-            <div class="comp-bar-track">
-              <div class="comp-segment comp-seg-chuckles" style="width: 33.33%;" title="Chuckles: 6 of 18 (33.3%)">33.3% (6)</div>
-              <div class="comp-segment comp-seg-whispers" style="width: 22.22%;" title="Whispers: 4 of 18 (22.2%)">22.2% (4)</div>
-              <div class="comp-segment comp-seg-neutral" style="width: 44.45%;" title="Neutral: 8 of 18 (44.4%)">44.4% (8)</div>
+            <div class="indiv-bar-list">
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-chuckles" style="width: 33.33%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">33.3% (6)</span>
+                  <span class="indiv-bar-name">Chuckles</span>
+                </div>
+              </div>
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-whispers" style="width: 22.22%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">22.2% (4)</span>
+                  <span class="indiv-bar-name">Whispers</span>
+                </div>
+              </div>
+              <div class="indiv-bar-row">
+                <div class="indiv-bar-track">
+                  <div class="indiv-bar comp-seg-neutral" style="width: 44.45%;"></div>
+                </div>
+                <div class="indiv-bar-meta">
+                  <span class="indiv-bar-val">44.4% (8)</span>
+                  <span class="indiv-bar-name">Neutral</span>
+                </div>
+              </div>
             </div>
           </div>
         `;

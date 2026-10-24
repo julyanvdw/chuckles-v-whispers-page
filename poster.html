@@ -133,7 +133,7 @@
     .poster-col-right {
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 56px;
     }
 
     .insight-card {
@@ -624,9 +624,9 @@
         <p class="insight-body">
           Chuckles: R0.47/g vs. Whispers: R0.43/g (+9.3%). In blind testing, Chuckles captured 68.8% of expressed preferences (11 vs. 5). A 120% preference advantage from a modest price difference.
         </p>
-        <div class="vis-wrap">
+        <div class="vis-wrap" style="margin-top:8px;">
           <p class="vis-title">Price vs. preference disproportionality</p>
-          <svg viewBox="0 0 240 52" style="width:235px;max-width:100%;height:auto;display:block;margin:0 auto;">
+          <svg viewBox="0 0 240 58" style="width:235px;max-width:100%;height:auto;display:block;margin:0 auto;">
             <!-- Price row -->
             <text x="0" y="9" font-size="7.2" fill="#888" font-family="Inter,sans-serif">Price per gram</text>
             <line x1="0" y1="18" x2="210" y2="18" stroke="#f0f0f0" stroke-width="3" stroke-linecap="round"/>
@@ -637,13 +637,13 @@
             <text x="145" y="20" font-size="7.5" fill="#777" font-family="Inter,sans-serif">+9.3% price</text>
 
             <!-- Preference row -->
-            <text x="0" y="38" font-size="7.2" fill="#888" font-family="Inter,sans-serif">Blind preference</text>
-            <line x1="0" y1="45" x2="210" y2="45" stroke="#f0f0f0" stroke-width="3" stroke-linecap="round"/>
-            <circle cx="35" cy="45" r="4.2" fill="#5e35b1"/>
-            <text x="35" y="53" font-size="7" fill="#5e35b1" text-anchor="middle" font-family="Inter,sans-serif" font-weight="500">31%</text>
-            <circle cx="120" cy="45" r="5.5" fill="#d32f2f"/>
-            <text x="120" y="53" font-size="7" fill="#d32f2f" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">69%</text>
-            <text x="145" y="47" font-size="7.8" fill="#d32f2f" font-weight="600" font-family="Inter,sans-serif">+120% pref share</text>
+            <text x="0" y="42" font-size="7.2" fill="#888" font-family="Inter,sans-serif">Blind preference</text>
+            <line x1="0" y1="50" x2="210" y2="50" stroke="#f0f0f0" stroke-width="3" stroke-linecap="round"/>
+            <circle cx="35" cy="50" r="4.2" fill="#5e35b1"/>
+            <text x="35" y="58" font-size="7" fill="#5e35b1" text-anchor="middle" font-family="Inter,sans-serif" font-weight="500">31%</text>
+            <circle cx="120" cy="50" r="5.5" fill="#d32f2f"/>
+            <text x="120" y="58" font-size="7" fill="#d32f2f" text-anchor="middle" font-family="Inter,sans-serif" font-weight="600">69%</text>
+            <text x="145" y="52" font-size="7.8" fill="#d32f2f" font-weight="600" font-family="Inter,sans-serif">+120% pref share</text>
           </svg>
         </div>
       </div>
@@ -656,7 +656,7 @@
         <p class="insight-body">
           Of 7 participants who perceived both bags as identical, 6 guessed Chuckles both times (85.7%) and only 1 guessed Whispers. All 7 reported no preference, confirming honest responses.
         </p>
-        <div class="vis-wrap">
+        <div class="vis-wrap" style="margin-top:8px;">
           <p class="vis-title">Default brand assumption among identical guessers (n = 7)</p>
           <div style="width:235px; max-width:100%; margin:0 auto 3px auto;">
             <div style="display:flex; justify-content:space-between; font-size:0.75em; font-weight:600; margin-bottom:2px;">
@@ -683,38 +683,64 @@
         <p class="insight-body">
           Women: 71.4% correct (5 of 7). Men: 44.4% correct (8 of 18). Notable difference across a small sample.
         </p>
-        <div class="vis-wrap">
-          <p class="vis-title">Identification outcome by gender (100% composite bars)</p>
+        <div class="vis-wrap" style="margin-top:8px;">
+          <p class="vis-title">Identification outcome by gender</p>
           
           <div style="width:235px; max-width:100%; margin:0 auto;">
-            <!-- Women Bar -->
-            <div style="margin-bottom: 5px;">
-              <div style="display:flex; justify-content:space-between; font-size:0.8em; margin-bottom:2px;">
-                <span style="font-weight:600; color:#000000;">Women (n = 7)</span>
-                <span style="color:#555555;"><strong>71.4%</strong> correct</span>
+            <!-- Women -->
+            <div style="margin-bottom: 7px;">
+              <div style="font-size:0.8em; font-weight:600; color:#000000; margin-bottom:3px;">Women (n = 7)</div>
+              
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:2.5px;">
+                <div style="width:130px; height:12px; background:#f0f0f0; border-radius:2px; overflow:hidden;">
+                  <div style="width:71.4%; height:100%; background:#000000;"></div>
+                </div>
+                <span style="font-size:0.75em; color:#111; font-weight:600;">71.4% (5)</span>
               </div>
-              <div style="display:flex; height:17px; border-radius:3px; overflow:hidden; font-size:0.74em; font-weight:500;">
-                <div style="width:71.4%; background:#000000; color:#ffffff; display:flex; align-items:center; justify-content:center;">71.4% (5)</div>
-                <div style="width:14.3%; background:#767676; color:#ffffff; display:flex; align-items:center; justify-content:center;">14%</div>
-                <div style="width:14.3%; background:#d1d5db; color:#222222; display:flex; align-items:center; justify-content:center;">14%</div>
+
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:2.5px;">
+                <div style="width:130px; height:12px; background:#f0f0f0; border-radius:2px; overflow:hidden;">
+                  <div style="width:14.3%; height:100%; background:#767676;"></div>
+                </div>
+                <span style="font-size:0.75em; color:#555;">14.3% (1)</span>
+              </div>
+
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div style="width:130px; height:12px; background:#f0f0f0; border-radius:2px; overflow:hidden;">
+                  <div style="width:14.3%; height:100%; background:#d1d5db;"></div>
+                </div>
+                <span style="font-size:0.75em; color:#555;">14.3% (1)</span>
               </div>
             </div>
 
-            <!-- Men Bar -->
+            <!-- Men -->
             <div>
-              <div style="display:flex; justify-content:space-between; font-size:0.8em; margin-bottom:2px;">
-                <span style="font-weight:600; color:#000000;">Men (n = 18)</span>
-                <span style="color:#555555;"><strong>44.4%</strong> correct</span>
+              <div style="font-size:0.8em; font-weight:600; color:#000000; margin-bottom:3px;">Men (n = 18)</div>
+              
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:2.5px;">
+                <div style="width:130px; height:12px; background:#f0f0f0; border-radius:2px; overflow:hidden;">
+                  <div style="width:44.4%; height:100%; background:#000000;"></div>
+                </div>
+                <span style="font-size:0.75em; color:#111; font-weight:600;">44.4% (8)</span>
               </div>
-              <div style="display:flex; height:17px; border-radius:3px; overflow:hidden; font-size:0.74em; font-weight:500;">
-                <div style="width:44.4%; background:#000000; color:#ffffff; display:flex; align-items:center; justify-content:center;">44.4% (8)</div>
-                <div style="width:33.3%; background:#767676; color:#ffffff; display:flex; align-items:center; justify-content:center;">33.3% (6)</div>
-                <div style="width:22.3%; background:#d1d5db; color:#222222; display:flex; align-items:center; justify-content:center;">22.2% (4)</div>
+
+              <div style="display:flex; align-items:center; gap:8px; margin-bottom:2.5px;">
+                <div style="width:130px; height:12px; background:#f0f0f0; border-radius:2px; overflow:hidden;">
+                  <div style="width:33.3%; height:100%; background:#767676;"></div>
+                </div>
+                <span style="font-size:0.75em; color:#555;">33.3% (6)</span>
+              </div>
+
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div style="width:130px; height:12px; background:#f0f0f0; border-radius:2px; overflow:hidden;">
+                  <div style="width:22.2%; height:100%; background:#d1d5db;"></div>
+                </div>
+                <span style="font-size:0.75em; color:#555;">22.2% (4)</span>
               </div>
             </div>
           </div>
 
-          <div class="legend-wrap" style="margin-top:4px;">
+          <div class="legend-wrap" style="margin-top:5px;">
             <span class="legend-item"><span class="legend-dot" style="background:#000000; border-radius:2px;"></span>Correct</span>
             <span class="legend-item"><span class="legend-dot" style="background:#767676; border-radius:2px;"></span>Same</span>
             <span class="legend-item"><span class="legend-dot" style="background:#d1d5db; border-radius:2px;"></span>Inverted</span>

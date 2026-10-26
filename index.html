@@ -676,6 +676,175 @@
     }
 
     /* -------------------------------------------------------
+       PARTICIPANT BREAKDOWN TABLE
+    ------------------------------------------------------- */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .participant-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88em;
+      text-align: left;
+    }
+
+    .participant-table th {
+      padding: 10px 16px;
+      font-size: 0.78em;
+      font-weight: 600;
+      color: #555555;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      background: #fafafa;
+      border-bottom: 1px solid #e5e7eb;
+      white-space: nowrap;
+    }
+
+    .participant-table td {
+      padding: 9px 16px;
+      border-bottom: 1px solid #f3f4f6;
+      color: #222222;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .participant-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .participant-table tbody tr:hover {
+      background: #fafafa;
+    }
+
+    .participant-name {
+      font-weight: 600;
+      color: #000000;
+      font-size: 0.95em;
+    }
+
+    .choice-mark {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.9em;
+      font-weight: 500;
+      color: #111111;
+    }
+
+    .choice-mark .mark-icon {
+      font-weight: 700;
+      font-size: 1.05em;
+      line-height: 1;
+    }
+
+    .choice-mark.is-correct .mark-icon {
+      color: #16a34a;
+    }
+
+    .choice-mark.is-incorrect .mark-icon {
+      color: #dc2626;
+    }
+
+    .pref-dot {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .pref-dot.chuckles {
+      background: #d32f2f;
+    }
+
+    .pref-dot.whispers {
+      background: #5e35b1;
+    }
+
+    .pref-dot.none {
+      background: #9ca3af;
+    }
+
+    .table-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+
+    .table-legend {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 14px;
+      font-size: 0.82em;
+      color: #666666;
+    }
+
+    .table-legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    @media (max-width: 620px) {
+      .table-controls {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+      }
+      .table-controls .slider-group {
+        width: 100%;
+        justify-content: center;
+      }
+      .table-controls .pill-slider {
+        padding: 2px;
+        gap: 1px;
+        max-width: 100%;
+        overflow-x: auto;
+      }
+      .table-controls .pill-btn {
+        padding: 3px 8px;
+        font-size: 0.76em;
+      }
+      .participant-table th {
+        padding: 8px 10px;
+        font-size: 0.72em;
+      }
+      .participant-table td {
+        padding: 8px 10px;
+        font-size: 0.82em;
+      }
+      .participant-name {
+        font-size: 0.88em;
+      }
+      .choice-mark {
+        font-size: 0.84em;
+        gap: 3px;
+      }
+      .pref-dot {
+        width: 9px;
+        height: 9px;
+      }
+      .table-legend {
+        gap: 10px;
+        font-size: 0.76em;
+      }
+    }
+
+    /* -------------------------------------------------------
        FOOTER
     ------------------------------------------------------- */
     .study-footer {
@@ -1061,6 +1230,70 @@
       </div>
     </section>
 
+    <hr class="section-divider">
+
+    <!-- =====================================================
+         PARTICIPANT BREAKDOWN: INDIVIDUAL RECORDS
+    ===================================================== -->
+    <section class="insight-section" id="individual-breakdown">
+      <div class="insight-header">
+        <div class="insight-num">Individual Records</div>
+        <h2 class="insight-title">Participant-by-Participant Breakdown</h2>
+        <p class="insight-subline">Every call, every slip, and every preference on record.</p>
+        <p class="insight-body">
+          Ground truth: <strong>Bag 1 was Cadbury Whispers</strong>; <strong>Bag 2 was Woolworths Chuckles</strong>. Below is the complete unblinded record for all 25 participants &mdash; showing each person's identification for Bag 1 and Bag 2 (marked right or wrong) and their declared brand preference.
+        </p>
+      </div>
+
+      <div class="insight-vis" style="width:100%; max-width:800px; margin:0 auto;">
+        <div class="controls-wrap table-controls">
+          <div class="slider-group">
+            <span class="slider-label">Outcome:</span>
+            <div class="pill-slider">
+              <button class="pill-btn active" onclick="setTableOutcome('all',this)">All (25)</button>
+              <button class="pill-btn" onclick="setTableOutcome('both_correct',this)"><span class="opt-full">Both Correct (13)</span><span class="opt-short">2 Right (13)</span></button>
+              <button class="pill-btn" onclick="setTableOutcome('one_correct',this)"><span class="opt-full">1 Correct (7)</span><span class="opt-short">1 Right (7)</span></button>
+              <button class="pill-btn" onclick="setTableOutcome('both_wrong',this)"><span class="opt-full">Both Wrong (5)</span><span class="opt-short">0 Right (5)</span></button>
+            </div>
+          </div>
+          <div class="slider-group">
+            <span class="slider-label">Preference:</span>
+            <div class="pill-slider">
+              <button class="pill-btn active" onclick="setTablePref('all',this)">All</button>
+              <button class="pill-btn" onclick="setTablePref('Chuckles',this)"><span class="pref-dot chuckles" style="width:7px; height:7px; margin-right:4px;"></span><span class="opt-full">Chuckles (11)</span><span class="opt-short">C (11)</span></button>
+              <button class="pill-btn" onclick="setTablePref('Whispers',this)"><span class="pref-dot whispers" style="width:7px; height:7px; margin-right:4px;"></span><span class="opt-full">Whispers (5)</span><span class="opt-short">W (5)</span></button>
+              <button class="pill-btn" onclick="setTablePref('None',this)"><span class="pref-dot none" style="width:7px; height:7px; margin-right:4px;"></span><span class="opt-full">None (9)</span><span class="opt-short">None (9)</span></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="participant-table">
+            <thead>
+              <tr>
+                <th>Participant</th>
+                <th><span class="opt-full">Bag 1 (Whispers)</span><span class="opt-short">Bag 1 (W)</span></th>
+                <th><span class="opt-full">Bag 2 (Chuckles)</span><span class="opt-short">Bag 2 (C)</span></th>
+                <th style="text-align:center;"><span class="opt-full">Preference</span><span class="opt-short">Pref</span></th>
+              </tr>
+            </thead>
+            <tbody id="participantTableBody">
+              <!-- Rendered via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-legend">
+          <span class="table-legend-item"><span class="mark-icon" style="color:#16a34a; font-weight:700;">✓</span> Correct</span>
+          <span class="table-legend-item"><span class="mark-icon" style="color:#dc2626; font-weight:700;">✗</span> Incorrect</span>
+          <span class="table-legend-item"><span class="pref-dot chuckles"></span> Chuckles</span>
+          <span class="table-legend-item"><span class="pref-dot whispers"></span> Whispers</span>
+          <span class="table-legend-item"><span class="pref-dot none"></span> No preference</span>
+          <span class="table-legend-item"><span style="color:#d1d5db; font-size:1.1em;">&mdash;</span> Perceived identical</span>
+        </div>
+      </div>
+    </section>
+
     <!-- =====================================================
          FOOTER / METHODOLOGY
     ===================================================== -->
@@ -1085,31 +1318,31 @@
     // DATA
     // ---------------------------------------------------------
     const data = [
-      { id:1,  person:"Cam",      bag1:"W", bag2:"W", preference:"Na", gender:"male",   role:"Manager",          pattern:"WW", preferred_brand:"None",     perceived_preference:"None" },
-      { id:2,  person:"Nina",     bag1:"W", bag2:"C", preference:"1",  gender:"female", role:"Associate",        pattern:"WC", preferred_brand:"Whispers",  perceived_preference:"Whispers" },
-      { id:3,  person:"Nick",     bag1:"W", bag2:"C", preference:"2",  gender:"male",   role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
-      { id:4,  person:"Jean K",   bag1:"C", bag2:"W", preference:"1",  gender:"male",   role:"Senior Associate", pattern:"CW", preferred_brand:"Whispers",  perceived_preference:"Chuckles" },
-      { id:5,  person:"Nicole",   bag1:"W", bag2:"C", preference:"2",  gender:"female", role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
-      { id:6,  person:"Cass",     bag1:"C", bag2:"C", preference:"Na", gender:"female", role:"Associate",        pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
-      { id:7,  person:"Jp",       bag1:"W", bag2:"C", preference:"2",  gender:"male",   role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
-      { id:8,  person:"Nathan",   bag1:"C", bag2:"W", preference:"2",  gender:"male",   role:"Senior Associate", pattern:"CW", preferred_brand:"Chuckles",  perceived_preference:"Whispers" },
-      { id:9,  person:"Josh vZ",  bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Associate",        pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
-      { id:10, person:"Guss",     bag1:"W", bag2:"C", preference:"2",  gender:"male",   role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
-      { id:11, person:"Dev C",    bag1:"C", bag2:"W", preference:"2",  gender:"male",   role:"Associate",        pattern:"CW", preferred_brand:"Chuckles",  perceived_preference:"Whispers" },
-      { id:12, person:"Alma",     bag1:"W", bag2:"C", preference:"2",  gender:"female", role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
-      { id:13, person:"Claire",   bag1:"W", bag2:"C", preference:"2",  gender:"female", role:"Manager",          pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
-      { id:14, person:"Ruan",     bag1:"W", bag2:"C", preference:"1",  gender:"male",   role:"Senior Associate", pattern:"WC", preferred_brand:"Whispers",  perceived_preference:"Whispers" },
-      { id:15, person:"Clara",    bag1:"W", bag2:"C", preference:"2",  gender:"female", role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
-      { id:16, person:"Faf",      bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Senior Associate", pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
-      { id:17, person:"Brian",    bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Senior Associate", pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
-      { id:18, person:"Finn",     bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Senior Associate", pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
-      { id:19, person:"Inge",     bag1:"C", bag2:"W", preference:"2",  gender:"female", role:"Associate",        pattern:"CW", preferred_brand:"Chuckles",  perceived_preference:"Whispers" },
-      { id:20, person:"Matt R",   bag1:"W", bag2:"C", preference:"2",  gender:"male",   role:"Manager",          pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
-      { id:21, person:"Mc",       bag1:"W", bag2:"C", preference:"1",  gender:"male",   role:"Manager",          pattern:"WC", preferred_brand:"Whispers",  perceived_preference:"Whispers" },
-      { id:22, person:"Mike",     bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Manager",          pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
-      { id:23, person:"David",    bag1:"W", bag2:"C", preference:"Na", gender:"male",   role:"Associate",        pattern:"WC", preferred_brand:"None",      perceived_preference:"None" },
-      { id:24, person:"Heinrich", bag1:"W", bag2:"C", preference:"Na", gender:"male",   role:"Manager",          pattern:"WC", preferred_brand:"None",      perceived_preference:"None" },
-      { id:25, person:"Phil",     bag1:"C", bag2:"W", preference:"1",  gender:"male",   role:"Manager",          pattern:"CW", preferred_brand:"Whispers",  perceived_preference:"Chuckles" }
+      { id:1,  person:"Cameron",   bag1:"W", bag2:"W", preference:"Na", gender:"male",   role:"Manager",          pattern:"WW", preferred_brand:"None",     perceived_preference:"None" },
+      { id:2,  person:"Nina",      bag1:"W", bag2:"C", preference:"1",  gender:"female", role:"Associate",        pattern:"WC", preferred_brand:"Whispers",  perceived_preference:"Whispers" },
+      { id:3,  person:"Nicholas",  bag1:"W", bag2:"C", preference:"2",  gender:"male",   role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
+      { id:4,  person:"Jean K",    bag1:"C", bag2:"W", preference:"1",  gender:"male",   role:"Senior Associate", pattern:"CW", preferred_brand:"Whispers",  perceived_preference:"Chuckles" },
+      { id:5,  person:"Nicole",    bag1:"W", bag2:"C", preference:"2",  gender:"female", role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
+      { id:6,  person:"Cassandra", bag1:"C", bag2:"C", preference:"Na", gender:"female", role:"Associate",        pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
+      { id:7,  person:"JP",        bag1:"W", bag2:"C", preference:"2",  gender:"male",   role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
+      { id:8,  person:"Nathan",    bag1:"C", bag2:"W", preference:"2",  gender:"male",   role:"Senior Associate", pattern:"CW", preferred_brand:"Chuckles",  perceived_preference:"Whispers" },
+      { id:9,  person:"Josh vZ",   bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Associate",        pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
+      { id:10, person:"Guss",      bag1:"W", bag2:"C", preference:"2",  gender:"male",   role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
+      { id:11, person:"Devon C",   bag1:"C", bag2:"W", preference:"2",  gender:"male",   role:"Associate",        pattern:"CW", preferred_brand:"Chuckles",  perceived_preference:"Whispers" },
+      { id:12, person:"Alma",      bag1:"W", bag2:"C", preference:"2",  gender:"female", role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
+      { id:13, person:"Claire",    bag1:"W", bag2:"C", preference:"2",  gender:"female", role:"Manager",          pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
+      { id:14, person:"Ruan",      bag1:"W", bag2:"C", preference:"1",  gender:"male",   role:"Senior Associate", pattern:"WC", preferred_brand:"Whispers",  perceived_preference:"Whispers" },
+      { id:15, person:"Clara",     bag1:"W", bag2:"C", preference:"2",  gender:"female", role:"Associate",        pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
+      { id:16, person:"Faf",       bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Senior Associate", pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
+      { id:17, person:"Brian",     bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Senior Associate", pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
+      { id:18, person:"Finn",      bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Senior Associate", pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
+      { id:19, person:"Inge",      bag1:"C", bag2:"W", preference:"2",  gender:"female", role:"Associate",        pattern:"CW", preferred_brand:"Chuckles",  perceived_preference:"Whispers" },
+      { id:20, person:"Matthew R", bag1:"W", bag2:"C", preference:"2",  gender:"male",   role:"Manager",          pattern:"WC", preferred_brand:"Chuckles",  perceived_preference:"Chuckles" },
+      { id:21, person:"MC",        bag1:"W", bag2:"C", preference:"1",  gender:"male",   role:"Manager",          pattern:"WC", preferred_brand:"Whispers",  perceived_preference:"Whispers" },
+      { id:22, person:"Mike",      bag1:"C", bag2:"C", preference:"Na", gender:"male",   role:"Manager",          pattern:"CC", preferred_brand:"None",      perceived_preference:"None" },
+      { id:23, person:"David",     bag1:"W", bag2:"C", preference:"Na", gender:"male",   role:"Associate",        pattern:"WC", preferred_brand:"None",      perceived_preference:"None" },
+      { id:24, person:"Heinrich",  bag1:"W", bag2:"C", preference:"Na", gender:"male",   role:"Manager",          pattern:"WC", preferred_brand:"None",      perceived_preference:"None" },
+      { id:25, person:"Philip",    bag1:"C", bag2:"W", preference:"1",  gender:"male",   role:"Manager",          pattern:"CW", preferred_brand:"Whispers",  perceived_preference:"Chuckles" }
     ];
 
     function brandColor(b) {
@@ -1490,12 +1723,90 @@
     }
 
     // ---------------------------------------------------------
+    // PARTICIPANT BREAKDOWN TABLE
+    // ---------------------------------------------------------
+    let tableOutcomeFilter = 'all';
+    let tablePrefFilter = 'all';
+
+    function renderParticipantTable() {
+      const tbody = document.getElementById('participantTableBody');
+      if (!tbody) return;
+
+      const filtered = data.filter(d => {
+        // Outcome filter: WC = both correct (13), WW or CC = 1 correct / perceived same (7), CW = both wrong / inverted (5)
+        if (tableOutcomeFilter === 'both_correct' && !isCorrect(d)) return false;
+        if (tableOutcomeFilter === 'one_correct' && !isSame(d)) return false;
+        if (tableOutcomeFilter === 'both_wrong' && !isInverted(d)) return false;
+
+        // Preference filter: Chuckles (11), Whispers (5), None (9)
+        if (tablePrefFilter !== 'all' && d.preferred_brand !== tablePrefFilter) return false;
+
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; padding:1.5rem; color:#888888; font-size:0.88em;">No participants match this combination.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(d => {
+        // Ground truth: Bag 1 was Whispers (W), Bag 2 was Chuckles (C)
+        const b1Right = d.bag1 === 'W';
+        const b1Mark = b1Right 
+          ? `<span class="choice-mark is-correct"><span class="mark-icon">✓</span> W</span>`
+          : `<span class="choice-mark is-incorrect"><span class="mark-icon">✗</span> C</span>`;
+
+        const b2Right = d.bag2 === 'C';
+        const b2Mark = b2Right 
+          ? `<span class="choice-mark is-correct"><span class="mark-icon">✓</span> C</span>`
+          : `<span class="choice-mark is-incorrect"><span class="mark-icon">✗</span> W</span>`;
+
+        let prefDot = '';
+        if (d.preferred_brand === 'Chuckles') {
+          prefDot = `<span class="pref-dot chuckles" title="Preferred Chuckles" aria-label="Chuckles"></span>`;
+        } else if (d.preferred_brand === 'Whispers') {
+          prefDot = `<span class="pref-dot whispers" title="Preferred Whispers" aria-label="Whispers"></span>`;
+        } else if (d.bag1 !== d.bag2) {
+          // Explicitly chose no preference despite identifying different brands
+          prefDot = `<span class="pref-dot none" title="No preference" aria-label="No preference"></span>`;
+        } else {
+          // Both choices were the same (perceived identical) - no dot
+          prefDot = `<span class="pref-dash" style="color:#d1d5db; font-size:1.1em;">&mdash;</span>`;
+        }
+
+        return `
+          <tr>
+            <td class="participant-name">${d.person}</td>
+            <td>${b1Mark}</td>
+            <td>${b2Mark}</td>
+            <td style="text-align:center;">${prefDot}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function setTableOutcome(val, btn) {
+      tableOutcomeFilter = val;
+      btn.parentElement.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderParticipantTable();
+    }
+
+    function setTablePref(val, btn) {
+      tablePrefFilter = val;
+      btn.parentElement.querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderParticipantTable();
+    }
+
+    // ---------------------------------------------------------
     // INIT
     // ---------------------------------------------------------
     window.addEventListener('DOMContentLoaded', () => {
       renderScatter();
       renderFlow();
       renderCompositeChart();
+      renderParticipantTable();
     });
   </script>
 
